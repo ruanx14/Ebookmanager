@@ -33,11 +33,11 @@ function showHideMenu () {
       var links = nav.innerHTML.split("a href").length - 2;
       nav.style.height = 40 + 58 + (51 * links) + "px";
       navStatus = 1;
-      mobileBtnMenu.style.backgroundImage = "url(cancel.svg)";
+      mobileBtnMenu.style.backgroundImage = "url(../img/cancel.svg)";
    } else {
       nav.style.height = "40px";
       navStatus = 0;
-      mobileBtnMenu.style.backgroundImage = "url(menu.svg)";
+      mobileBtnMenu.style.backgroundImage = "url(../img/menu.svg)";
    }
 }
 

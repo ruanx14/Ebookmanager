@@ -17,7 +17,7 @@ exports.index = async (req,res,next) =>  {
     highLights = await Highlights.findByPk(1);
     dateDatabase = new Date(highLights.dateChange);
     //console.log(today);
-    console.log(highLights);
+    //console.log(highLights);
     if(today<=dateDatabase){
         idBooksHigh = highLights.idBooks;
     }else{

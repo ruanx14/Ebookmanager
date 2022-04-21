@@ -93,7 +93,7 @@ user.hasOne(review,{foreignKey: 'idUsers'})
 review.belongsTo(book,{foreignKey : 'idBooks'});
 book.hasOne(review,{foreignKey:'idBooks'});
  
-port = 27310 || 3000;
+port = process.env.PORT || 21305;
 
 sequelize.sync();
 

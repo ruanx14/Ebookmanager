@@ -1,4 +1,4 @@
-.bloco{
+.main-body{
     width: 100%;
     padding: 10px;
     margin-top: 2px;
@@ -107,5 +107,15 @@ input[type=radio]:checked + label{
 @media screen and (max-width: 500px){
     .newTag, .newGenre{
         width: 100%;
+    }
+    .book_img img{
+        max-height: 60%;
+        margin-top: 20px;
+    }
+    .bloco_book{
+        flex-wrap: wrap;
+    }
+    .bloco_book .book_info, .bloco_book .book_img{
+        width:100%;
     }
 }

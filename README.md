@@ -47,6 +47,7 @@ Este projeto foi desenvolvido utilizando as seguintes tecnologias:
 - **[Express](https://expressjs.com/pt-br//)**
 - **[multer](https://www.npmjs.com/package/multer)**
 - **[body-parser](https://www.npmjs.com/package/body-parser)**
+- **[sequelize](https://sequelize.org/docs/v6/getting-started/)**
 
 #### Frontend
 - **[HTML](https://developer.mozilla.org/pt-BR/docs/Web/HTML)**

@@ -8,6 +8,8 @@
    <meta name="viewport" content="width=device-width, initial-scale=1">
    <link rel="stylesheet" type="text/css" media="screen" href="./css/main.css" />
    <link rel="icon" href="./img/icon.png">
+   <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-5249012097005531"
+     crossorigin="anonymous"></script>
 </head>
 <body>
    <!-- Todo o conteúdo -->
@@ -33,7 +35,17 @@
                </form>
             </div>
             <a href="#destaque">Destaque</a>
+            <%
+            if(showLogin==true){
+            %>
             <a href="#cadastro">Cadastro</a>
+            <% 
+            }else{
+            %>
+            <a href="/user-manager/">Manager</a>
+            <% 
+            }
+            %>
             <a href="#categorias">Categorias</a>
             <a href="#tags">Tags</a>
             <a href="#mais-visitados">Mais visitados</a>

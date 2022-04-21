@@ -117,4 +117,4 @@ INSERT INTO `Reviews` (`idReviews`,`idUsers`,`idBooks`,`title`,`textReviews`,`da
 INSERT INTO `Managers` (`idManagers`,`idUsers`,`title`,`author`,`sizeEpub`,`pathEpub`,`statusVisible`) VALUES (1,4,'o lado bom da vida','matthew quick','350382KB','o lado bom da vida.epub','public');
 /*Precisa de mais Managers e Reviews*/
 
-INSERT INTO `Highlights` (`idHighlights`,`idBooks`,`dateChange`) VALUES (1,'3','2020-02-24');
+INSERT INTO `Highlights` (`idHighlights`,`idBooks`,`dateChange`) VALUES (1,'3','2020-02-29');

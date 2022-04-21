@@ -4,6 +4,10 @@
   justify-content: center;
   text-align: center;
   width: 100%;
+  background-color: rgb(218, 208, 208);
+  border-radius: 200px;
+  text-decoration: underline;
+  padding: 5px;
 }
 .div-new-login article:nth-child(2){
   display: none;
@@ -183,7 +187,7 @@ body {
   display: inline-block;
   position: absolute;
   right: 0;
-  background-image: url(../img/menu.svg);
+  background-image: url("/img/menu.svg");
   background-repeat: no-repeat;
   background-size: 25px;
   background-position: center;
