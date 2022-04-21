@@ -1,0 +1,10 @@
+<div class="menu-categorias" id="categorias">
+    <h4>Categorias</h4>
+    <!--Container categorias-->
+    <ul>
+        <% for(var i=0;i<genres.length;i++){ %>
+        <li><a href="/search/generos&<%=genres[i].genres%>"><%=genres[i].genres%></a></li>
+        <% }%>
+    
+    </ul>
+</div>

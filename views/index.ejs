@@ -1,0 +1,184 @@
+<!DOCTYPE html>
+<html>
+<head lang="pt-br">
+   <meta charset="utf-8" />
+   <meta http-equiv="X-UA-Compatible" content="IE=edge">
+   <title>Ebook Manager</title>
+   <script src="https://cdnjs.cloudflare.com/ajax/libs/babel-core/5.8.29/browser.min.js"></script>
+   <meta name="viewport" content="width=device-width, initial-scale=1">
+   <link rel="stylesheet" type="text/css" media="screen" href="./css/main.css" />
+   <link rel="icon" href="./img/icon.png">
+</head>
+<body>
+   <!-- Todo o conteúdo -->
+   <div class="container">
+
+      <!-- Header principal -->
+      <header class="header">
+         <h1><a href="./">Ebook-Manager</a></h1>
+
+      <!-- Menu horizontal -->
+      <nav class="menu">
+         <a href="./"><div class="btn-home" id="btn-home"></div></a>
+         <div class="show-menu-items" id="show-menu-items"></div>
+
+           <!--  <span>EBM</span> -->
+
+         <div class="menu-items">
+            <div class="mobile-search"><form action="/search/" method="get">
+                  <div class="input-group">
+                     <input type="search" name="search" id="m-search" placeholder="Procurar livros">
+                     <button type="submit"></button>
+                  </div>
+               </form>
+            </div>
+            <a href="#destaque">Destaque</a>
+            <a href="#cadastro">Cadastro</a>
+            <a href="#categorias">Categorias</a>
+            <a href="#tags">Tags</a>
+            <a href="#mais-visitados">Mais visitados</a>
+         </div>
+         
+      </nav>
+      </header>
+
+      <!-- Conteúdo principal -->
+      <main class="main">
+
+         <div class="main-content">
+            <!-- Livro de destaque -->
+            <div class="destaque" id="destaque">
+               <div class="destaque-capa"><img src="img/capes/<%=highlight[0].pathCover%>" alt="Capa"></div>
+
+               <div class="detalhes">
+                  <h3>Destaque</h3>
+
+                  <table>
+                     <tr>
+                        <th>Título</th>
+                        <td><%=highlight[0].title%></td>
+                     </tr>
+
+                     <tr>
+                        <th>Título Original</th>
+                        <td><%=highlight[0].titleOriginal%></td>
+                     </tr>
+
+                     <tr>
+                        <th>Editora</th>
+                        <td><%=highlight[0].publisher%></td>
+                     </tr>
+
+                     <tr>
+                        <th>Gênero</th>
+                        
+                        <td><%=highlight[0].Genre.genres%></td>
+                     </tr>
+
+                     <tr>
+                        <th>Autor</th>
+                        <td><%=highlight[0].author%></td>
+                     </tr>
+
+                     <tr>
+                        <th>Ano de lançamento</th>
+                        <td><%=highlight[0].yearPublic%></td>
+                     </tr>
+
+                     <tr>
+                        <th>Número de páginas</th>
+                        <td><%=highlight[0].pagesBook%></td>
+                     </tr>
+                  </table>
+
+                  <h4>Sinopse</h4>
+
+                  <p class="sinopse">
+                     <%=highlight[0].synopsis%>
+                  <div class="blur">
+                     <a href="book/<%=highlight[0].idBooks%>">Detalhes</a>
+                  </div>
+               </div>
+            </div>
+
+            <!-- 6 ultimos livros adicionados -->
+            <div class="recentes">
+
+               <h2>Adicionados recentemente</h2>
+
+               <% for(var i=0;i<books.length;i++){ %>
+                  
+               <a href="book/<%=books[i].idBooks%>">
+                  <div class="recentes-item">
+                     <img src="img/capes/<%=books[i].pathCover%>" alt="Capa de <%=books[i].title%>">
+                     <div class="recentes-info">
+                        <div class="recentes-item-titulo"><%=books[i].title%></div>
+                        <div class="recentes-item-autor"><%=books[i].author%></div>
+                        <div class="recentes-item-genero"><%=books[i].genre%></div>
+                     </div>
+                  </div>
+               </a>
+               <% } %>
+
+               <div class="btn-ver-mais">
+                  <a href="search/?searchN=tudo">Ver mais</a>
+               </div>
+            </div>
+         </div>
+      </main>
+
+
+
+      <!-- Categorias e pesquisa -->
+      <aside class="aside">
+         <div class="aside-content">
+            <!-- Campo de pesquisa -->
+            <div class="search">
+            <form action="/search/" method="get">
+                  <div class="input-group">
+                  <input type="search" name="search" id="" placeholder="Procurar livros" required>
+                  <button type="submit"></button>
+                  </div>
+            </form>
+            </div>
+
+            <!-- Campo de cadastro e login -->
+            <%
+            if(showLogin==true){
+            %>
+            <%- include('./includes/loginOrNot.ejs') %>
+            <% 
+            }else{
+            %>
+            <%- include('./includes/managerMenu.ejs') %>
+            <% 
+            }
+            %>
+
+            <!-- Menu de categorias -->
+            <%- include('./includes/genres.ejs') %>
+            <!-- Movido para includes -->
+
+            <!-- Mais visitados -->
+            <%- include('./includes/moreVisited.ejs') %>
+            <!-- Movido para includes -->
+
+            <!-- Campo de tags -->
+            <%- include('./includes/tags.ejs') %>
+            <!-- Movido para includes -->
+         </div>
+      </aside>
+      <!-- Rodapé -->
+      
+      <%- include('./includes/footer.ejs') %>
+
+            </div>
+      
+      <script src="./js/main.js" async></script>
+      <script>
+            window.onload = () => {
+                  document.body.style.backgroundImage = "linear-gradient(to bottom, transparent, #f0f0f0, #f0f0f0, #f0f0f0, #f0f0f0, #f0f0f0), url(img/head.jpg)";
+            }
+      </script>
+</body>
+</html>

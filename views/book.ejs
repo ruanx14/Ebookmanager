@@ -1,0 +1,313 @@
+<!DOCTYPE html>
+<html>
+<head lang="pt-br">
+   <meta charset="utf-8" />
+   <meta http-equiv="X-UA-Compatible" content="IE=edge">
+   <title><%=book.title%></title>
+   <script src="https://cdnjs.cloudflare.com/ajax/libs/babel-core/5.8.29/browser.min.js"></script>
+   <meta name="viewport" content="width=device-width, initial-scale=1">
+   <link rel="stylesheet" type="text/css" media="screen" href="../css/main.css" />
+   <link rel="stylesheet" type="text/css" media="screen" href="../css/book.css" />
+   <link rel="icon" href="../img/icon.png">
+   <script src="../js/main.js" async></script>
+</head>
+<body>
+   <!-- Todo o conteúdo -->
+   <div class="container">
+
+      <!-- Header principal -->
+      <header class="header">
+         <h1><a href="./">Ebook-Manager</a></h1>
+
+      <!-- Menu horizontal -->
+      <nav class="menu">
+         <a href="./"><div class="btn-home" id="btn-home"></div></a>
+         
+        <!--  <span>EBM</span> -->
+
+         <div class="show-menu-items" id="show-menu-items"></div>
+         <div class="menu-items">
+            <div class="mobile-search"><form action="/search/">
+                  <div class="input-group">
+                     <input type="search" name="search" id="m-search" placeholder="Procurar livros">
+   
+                     <button type="submit"></button>
+                  </div>
+               </form>
+            </div>
+
+            <a href="#cadastro">Cadastro</a>
+            
+            <a href="#categorias">Categorias</a>
+            <a href="#tags">Tags</a>
+            <a href="#resenhas">Resenhas</a>
+            <a href="#comentarios">Comentários</a>
+            <a href="#mais-visitados">Mais visitados</a>
+         </div>
+         
+      </nav>
+      </header>
+
+      <!-- Conteúdo principal -->
+      <main class="main">
+            <div class="back-btn">
+                  <div class="home"><a href="./">&#171; Home</a></div>
+                  <div class="last-page" onclick="window.history.back();">&lsaquo; Página anterior</div>
+            </div>
+
+         <!-- Detalhes sobre o livrossss -->
+         <div class="main-content">
+           
+            <!-- Seção sobre o livro -->
+            <div class="livro-info-container">
+               <img src="/img/capes/<%=book.pathCover%>" alt="Capa do livro <%=book.title%>">
+
+               <h4 class="titulo-livro"><%=book.title%></h4>
+
+               <p><%=book.synopsis%></p>
+
+               <h4 class="sobre">Sobre o Autor</h4>
+
+               <p><span class="nome-do-autor"><%=book.author%>: </span><%=book.aboutAuthor%></p>
+
+               <div class="informacoes-livro">
+                  <h4>Informações técnicas</h4>
+   
+                  <table>
+                        <tr>
+                           <th>Título</th>
+                           <td><%=book.title%></td>
+                        </tr>
+   
+                        <tr>
+                           <th>Título Original</th>
+                           <td><%=book.titleOriginal%></td>
+                        </tr>
+   
+                        <tr>
+                           <th>Editora</th>
+                           <td><%=book.publisher%></td>
+                        </tr>
+   
+                        <tr>
+                           <th>Gênero</th>
+                           <td><%=book.Genre.genres%></td>
+                        </tr>
+   
+                        <tr>
+                           <th>Autor</th>
+                           <td><%=book.author%></td>
+                        </tr>
+   
+                        <tr>
+                           <th>Ano de lançamento</th>
+                           <td><%=book.yearPublic%></td>
+                        </tr>
+   
+                        <tr>
+                           <th>Número de páginas</th>
+                           <td><%=book.pagesBook%></td>
+                        </tr>
+                     </table>
+               </div>
+            
+               <input type="checkbox" name="download" id="download">
+               <label for="download" class="btn-dowload">Arquivos</label>
+               <div class="files">
+                  <% 
+                 
+                  %>
+                    <div class="item-download">
+                        <table>                           
+                           <% 
+                           if(showLogin==false){
+                              %>
+                              <%
+                              if(managers.length>0){
+                                 for(var i=0;i<managers.length;i++){
+                              %>
+                            <tr>
+                                <th>Tamanho</th>
+                                <th>Nome</th>
+                                <th>Enviado por</th>
+                                <th>Download</th>
+                            </tr>
+                            <tr>
+                                <td><%=managers[i].sizeEpub%></td>
+                                <td><%=managers[i].title%></td>
+                                <td><%=managers[i].User.username%></td>
+                                <td><a href="/download/<%=managers[i].pathEpub%>">Download</a></td>
+                            </tr>
+                            <% } }else{ %>
+                              <p class="error">Este livro não possui downloads</p>
+                              <% } %>
+                            <% 
+                           }else{
+                            %> 
+                            <p class="error">Você precisa estar logado para ver os downloads</p>
+                            <% } %>
+                           </table>
+                    </div>
+               </div>
+            
+            
+            </div>
+            <% 
+            if(showLogin==false){
+            %>
+            <div class="resenhas" id="resenhas">
+               <h3>Envio rápido</h3>
+               <h3 style="text-align: center;"> Adicione um manager diretamente daqui!</h3>
+               <div class="enviar">
+                  <h3>Enviar arquivo</h3>
+                  <form action="/user-manager/sendBook?directly=true" method="POST" enctype="multipart/form-data">
+      
+                     <div class="input-group">
+                        <h3>Titulo e autor já adicionados, selecione o arquivo!</h3>
+                        <input type="text" name="title" id="titulo-arquivo" placeholder="Título do livro" value="<%=book.title%>">
+                        <input type="text" name="author" id="autor-arquivo" placeholder="Autor" value="<%=book.author%>">
+                     </div>
+                     <div class="input-group">
+                        <label class="btn-arquivo">Escolher arquivo
+                           <input type="file" name="bookName" accept=".epub, .pdf" id="arquivo" onchange="mostrarNome(this)">
+                        </label>
+                     </div>
+                     <div class="input-group submit-group">
+                        <div class="nome-arquivo" id="saida-nome-arquivo"></div>
+         
+                        <input type="submit" name="sendArquivo" value="Enviar arquivo">
+                     </div>
+                  </form>  
+               </div>
+            </div>
+            <% 
+            }
+            %>
+
+            <!-- Resenhas -->
+            <div class="resenhas" id="resenhas">
+               <h3>Resenhas</h3>
+               <h3 style="text-align: center;"> Em breve</h3>
+               <!-- Box para cada resenha -->
+               <% 
+               login = true;
+                  if(login==true){
+               %>
+                      <!--   <div class="box-resenha">
+                           <div class="user-info left">
+                              <span class="nick-name"><?=$info['username']?></span>
+                              <span class="data-resenha"><?=$info['datepost']?></span>
+                           </div>
+
+                           <div class="right">
+                              <h4 class="titulo-resenha"><?=$info['titulo']?></h4>
+            
+                              <div class="corpo-resenha">
+                                <p>
+                                </p>                 
+                              </div>
+                           </div>
+                        </div> -->
+
+            <!--    <a href="/resenhas" class="ver-mais-resenhas">Escreva uma/Leia Mais</a> -->
+               <% 
+               }
+               %>
+            </div>
+
+            <!-- Comentários sobre o livro -->
+            <div class="comentarios" id="comentarios">
+                <h3>Comentários</h3>
+                <% if(msg.isThere==true){ %>
+                  <div class="msg-erro">
+                     <p class="<%=msg.style%>"><%=msg.msg%></p>
+                  </div>
+               <% } %>
+                <!-- Deixe o seu comentário -->
+                <div class="deixar-comentario">
+                  <form action="<%=book.idBooks%>/adicionarComentario" method="POST">
+                        <textarea name="msg" id="msg" placeholder="Deixe seu comentário sobre esse livro"></textarea>
+                        <input type="submit" value="Postar" name="sendComment">
+                  </form>
+                </div>
+               <!-- Comentário individual -->
+               <% 
+               login = true;
+               if(login==true){
+                  for(var i=0;i<comments.length;i++){
+               %>
+               <div class="box-comentario">
+                  <div class="user-info">
+                     <span class="nick-name"><%=comments[i].User.username%></span>
+                  </div>
+
+                  <div class="corpo-comentario">
+                     <p><%=comments[i].textComment%></p>
+                     <p><span class="data-comentario"><%=comments[i].datePublic%></span></p>
+                  </div>
+               </div>
+               <% 
+                  }
+               }
+               %>
+            </div>
+         </div>
+      </main>
+
+
+
+      <!-- Categorias e pesquisa -->
+      <aside class="aside">
+         <div class="aside-content">
+            <!-- Campo de pesquisa -->
+            <div class="search">
+            <form action="/search/" method="get">
+                  <div class="input-group">
+                  <input type="search" name="search" id="" placeholder="Procurar livros" required>
+                  <button type="submit"></button>
+                  </div>
+            </form>
+            </div>
+ 
+            <!-- Campo de cadastro e login -->
+            <%
+            if(showLogin==true){
+            %>
+               <%- include('./includes/loginOrNot.ejs') %>
+            <% 
+            }else{
+            %>
+               <%- include('./includes/managerMenu.ejs') %>
+            <% 
+            }
+            %>
+
+            <!-- Menu de categorias -->
+            <%- include('./includes/genres.ejs') %>
+            <!-- Movido para includes -->
+
+            <!-- Mais visitados -->
+            <%- include('./includes/moreVisited.ejs') %>
+            <!-- Movido para includes -->
+
+            <!-- Campo de tags -->
+            <%- include('./includes/tags.ejs') %>
+            <!-- Movido para includes -->
+         </div>
+      </aside>
+
+
+      <!-- Rodapé -->
+      <%- include('./includes/footer.ejs') %>
+   </div>
+   <script>
+      function mostrarNome(file) {
+         var out = document.querySelector("#saida-nome-arquivo");
+         out.textContent = file.files[0].name;
+      }
+        window.onload = () => {
+            document.body.style.backgroundImage = "linear-gradient(to bottom, transparent, #f0f0f0, #f0f0f0, #f0f0f0, #f0f0f0, #f0f0f0), url(../img/book-head.jpg)";
+        }
+    </script>
+</body>
+</html>

@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="utf-8" />
+    <meta name="author" content="Ruan Barroso" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" type="text/css" media="screen" href="../css/adm/nav.css" />
+    <link rel="stylesheet" type="text/css" media="screen" href="../css/adm/bodyNew.css" />
+    <link rel="icon" href="../img/icon.png">
+    <title>Painel</title>
+</head>
+<body>
+<header>
+    <nav>
+        <a href="/user-panel/adicionarLivro" class="item">Novo Livro</a> 
+        <a href="/adm-panel" class="item">Painel</a>
+        <a href="../" class="item">Voltar</a>
+    </nav>
+</header>
+<main>
+    <div class="title">
+        <h1>Painel</h1>
+    </div>
+    <div class="bloco">
+        <p class="<%=msg.style%>"><%=msg.msg%></p>
+        <div class="newInfo">
+            <div class="newTag">
+                    <form action="/adm-panel/newTag" method="POST">
+                        <input type="text" name="tags" placeholder="Nova tag">
+                        <input type="submit" value="Cadastrar nova tag">
+                    </form>
+            </div>
+            <div class="newGenre">
+                    <form action="/adm-panel/newGenre" method="POST">
+                        <input type="text" name="genres" placeholder="Novo gênero">
+                        <input type="submit" value="Cadastrar novo gênero">
+                    </form>
+            </div>
+        </div>
+        <div class="bloco">
+            <%
+            if(noNewBook==true){
+            %>
+            <h3>0 livros novos para serem analisados!</h3>
+            <% } %>
+            <% for(var i=0;i<books.length;i++){ %>
+            <div class="bloco_book">
+                <div class="book_info">
+                    <div class="book_info_side">
+                       <label>Titulo: </label><p><%=book[i].title%></p>
+                       <label>Titulo Original: </label><p><%=book[i].titleOriginal%></p>
+                       <label>Autor: </label><p><%=book[i].author%></p>
+                       <label>Editora: </label><p><%=book[i].publisher%></p>
+                       <label>Ano de publicação: </label><p><%=book[i].yearPublic%></p>
+                       <label>Páginas do livro: </label><p><%=book[i].pagesBook%></p>
+                       <label>Sinopse: </label><p><%=book[i].synopsis%></p>
+                       <label>Sobre o autor: </label><p><%=book[i].aboutAuthor%></p>
+                    </div>
+                    <div class="book_info_allow">
+                        <form action="/adm-panel/bookSituation" method="POST">
+                            <input type="radio" id="yes" name="statusBook" value="denied">
+                            <label for="yes">Negar</label><br>
+                            <input type="radio" id="no" name="statusBook" value="approved">
+                            <label for="no">Aceitar</label><br>
+                            <input type="hidden" id="idBooks" name="idBooks" value="<%=book[i].idBooks%>">
+                            <input type="submit" value="Enviar">
+                        </form>
+                    </div>
+                </div>
+                <div class="book_img">
+                    <img src="/img/capes/<%=book[i].pathCover%>" alt="<%=book[i].pathCover%>">
+                </div>
+            </div>
+            <% } %>
+
+        </div>
+    </div>
+</main>
+<!--Ruan Barroso-->
+</body>
+</html>

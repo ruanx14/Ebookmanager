@@ -1,0 +1,111 @@
+.bloco{
+    width: 100%;
+    padding: 10px;
+    margin-top: 2px;
+}
+.bloco_book{
+    border-top: 1px solid grey;
+    margin-top: 2px;
+    padding: 3px;
+}
+.title{
+    background-color: rgb(188, 216, 112) !important;
+    padding: 20px;
+}
+.newInfo{
+    display: flex;
+    width: 100%;
+    flex-wrap: wrap;
+}
+.newTag, .newGenre{
+    width: 50%;
+}
+.newTag input, .newGenre input{
+    width: 95%;
+    border: 1px solid rgb(238, 238, 238);
+    padding: 20px;  
+    margin-top: 3px;
+    font-size: 1.2em;
+}
+input[type=submit]{
+    border: 1px solid rgb(238, 238, 238);
+    background-color: rgb(158, 245, 248);
+    border-radius: 5px;
+}
+.newTag input[type=submit]:hover, input[type=submit]:hover{
+    cursor: pointer;
+    color: rgb(49, 49, 49);
+    background-color: rgba(212, 211, 211, 0.788);
+    font-weight: bold;
+}
+.bloco_book{
+    display: flex;
+    width: 100%;
+}
+.book_info, .book_img{
+    width: 50%;
+}
+.book_info_side label{
+    font-weight: bold;
+    padding: 5px;
+}
+.book_info_side p{
+    padding: 3px;
+}
+.book_info_allow form{
+    display: flex;
+    margin-top: 10px;
+}
+.book_info_allow input, .book_info_allow label{
+    text-align: center;
+    display: block;
+    width: calc(100%/3);
+    padding: 20px;
+}
+.book_info_allow input:hover, .book_info_allow label:hover{
+    cursor: pointer;
+}
+.book_info_allow input[type=radio]{
+    display: none;
+}
+input[type=radio]:checked + label{
+    background-color: rgb(216, 214, 106);
+    text-shadow: -1px 1px black;    
+}
+.book_img{
+    display: flex;
+    justify-content: center;
+}
+.book_img img{
+    max-height: 500px;
+    display: block;
+}
+.error {
+    padding: 10px 0;
+    background-color: #eb5b5b;
+    text-align: center;
+    font-weight: bold;
+    color: #5f0707;
+  }
+  
+  .success {
+    padding: 10px 0;
+    background-color: #44cc7d;
+    text-align: center;
+    font-weight: bold;
+    color: #052409;
+  }
+  
+  .alert {
+    padding: 10px 0;
+    background-color: #e4d870;
+    text-align: center;
+    font-weight: bold;
+    color: #2c2a08;
+  }
+  
+@media screen and (max-width: 500px){
+    .newTag, .newGenre{
+        width: 100%;
+    }
+}

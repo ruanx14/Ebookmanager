@@ -1,0 +1,14 @@
+
+<div class="mais-visitados" id="mais-visitados">
+    <h4>Mais visitados</h4>
+    <!--Container Visitados-->
+    <div class="livros">
+     <% for(var i=0;i<moreClicked.length;i++){ %>
+        <div class="livros-item">
+              <img src="/img/capes/<%=moreClicked[i].pathCover%>" alt="">
+              <span><%=moreClicked[i].title%> - <%=moreClicked[i].author%></span>
+              <a href="/book/<%=moreClicked[i].idBooks%>">Detalhes</a>
+        </div>
+     <% } %>
+  </div>
+</div>

@@ -1,0 +1,32 @@
+<div class="cadastro" id="cadastro">
+    <h4>Cadastro / Login</h4>
+
+    <form action="/loginOrCreate" method="POST"> 
+      <% if(msg.isThere==true){ %>
+         <div class="msg-erro">
+				<p class="<%=msg.style%>"><%=msg.msg%></p>
+			</div>
+      <% } %>
+       <div class="input-group">
+          <input type="text" name="username" id="username" placeholder="Username">
+          <span class="ico-user"></span>
+       </div>
+
+       <div class="input-group">
+          <input type="password" name="password" id="password" placeholder="Senha">
+          <span class="ico-pass"></span>
+       </div>
+       <div class="input-group" id="hideOr">
+          <input type="email" name="email" id="email" placeholder="E-mail">
+          <span class="ico-email"></span>
+       </div>
+       <div class="input-group">
+          <div class="div-new-login">
+             <article>Já sou cadastrado!</article>
+             <article>Desejo me cadastrar!</article>
+          </div>
+       </div>
+       <input type="submit" name="btnCadastro" value="Confirmar">
+
+    </form>
+ </div>

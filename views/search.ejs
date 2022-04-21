@@ -1,0 +1,240 @@
+<?php 
+session_start();
+?>
+<!DOCTYPE html>
+<html>
+<head lang="pt-br">
+      <meta charset="utf-8" />
+      <meta http-equiv="X-UA-Compatible" content="IE=edge">
+      <title>Pesquise</title>
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/babel-core/5.8.29/browser.min.js"></script>
+      <meta name="viewport" content="width=device-width, initial-scale=1">
+      <link rel="stylesheet" type="text/css" media="screen" href="../css/main.css" />
+      <!-- <link rel="stylesheet" type="text/css" media="screen" href="../css/book.css" /> -->
+      <link rel="stylesheet" type="text/css" media="screen" href="../css/search.css" />
+      <link rel="icon" href="../img/icon.png">
+      <script src="../js/main.js" async></script>
+<?php
+include "../php/conexao.php";
+include "../php/logout.php";
+include "build_query.php";
+//echo $sql;
+?>
+</head>
+<body>
+      <!-- Todo o conteúdo -->
+      <div class="container">
+
+            <!-- Header principal -->
+            <header class="header">
+                  <h1><a href="../">Ebook-Manager</a></h1>
+
+                  <!-- Menu horizontal -->
+                  <nav class="menu">
+                        <a href="../index.php">
+                              <div class="btn-home" id="btn-home"></div>
+                        </a>
+
+                        <!-- <span>EBM</span> -->
+                        <div class="show-menu-items" id="show-menu-items"></div>
+                        <div class="menu-items">
+                              <div class="mobile-search">
+                                    <form action="/search/">
+                                          <div class="input-group">
+                                                <input type="search" name="search" id="m-search" placeholder="Procurar livros">
+
+                                                <button type="submit"></button>
+                                          </div>
+                                    </form>
+                              </div>
+                              <!-- Display: none se estiver logado -->
+                              <a href="#destaque">Destaque</a>
+                              <?php 
+                              if(!isset($_SESSION['idUsuarios']) and !isset($_SESSION['username'])){
+                              ?>
+                              <a href="#cadastro">Cadastro</a>
+                              <?php }?>
+                              <a href="#categorias">Categorias</a>
+                              <a href="#tags">Tags</a>
+                              <a href="#mais-visitados">Mais visitados</a>
+                        </div>
+
+                  </nav>
+            </header>
+
+            <!-- Conteúdo principal -->
+            <main class="main">
+
+                  <div class="back-btn">
+                        <div class="home"><a href="../">&#171; Home</a></div>
+                        <div class="last-page" onclick="window.history.back();">&lsaquo; Página anterior</div>
+                  </div>
+                  <div class="main-content">
+
+                        <!-- Resultado de pesquisas -->
+                        <div class="pesquisas" id="pesquisa">
+
+                              <h2 id="values">Resultado da busca por "<%=searchName%>"</h2>
+                              <h4>Encontrados: <span id="contues" ><%=countResult[0].contagem%></span></h4>
+
+                              <!-- <h2>Nome da categoria</h2>
+                              <h4><span>42 Livros em</span> Categoria</h4> -->
+
+                              <!-- <h2>Nome da tag</h2>
+                              <h4><span>35 livros</span></h4> -->
+
+                              <div class="filtros-de-busca">
+                                    <% if(filtros==false){ %>
+                                    <span>Ordenar por:</span>
+
+                                    <div class="input-group">
+                                          <a style="margin-left: 10px;" href="?alfabetica">Ordem alfabetica</a>
+                                    </div>
+
+                                    <div class="input-group">
+                                          <a style="margin-left: 10px;" href="?recentes">Mais recentes</a>
+                                    </div>
+                                    <div class="input-group">
+                                          <a style="margin-left: 10px;" href="?visitados">Mais visitados</a>
+                                    </div>
+                                    <div class="input-group">
+                                          <a style="margin-left: 10px;" href="?anoPublicacao">Ano de lançamentos</a>
+                                    </div>
+                                    <% } %>
+                              </div>
+
+                              <div class="resultados">
+                                    <!-- Item encontrado -->
+                                    <% 
+                                    for(var i=0;i<books.length;i++){
+                                    %>
+                                    <div class="item-busca">
+                                          <img src="/img/capes/<%=books[i].pathCover%>" alt="">
+
+                                          <div class="item-busca-detalhes">
+                                                <h3><a href="/book/<%=books[i].idBooks%>"><%=books[i].title%></a> - <%=books[i].author%></h3>
+
+                                                <table>
+                                                      <tr>
+                                                            <th>Título</th>
+                                                            <td><%=books[i].title%></td>
+                                                      </tr>
+
+                                                      <tr>
+                                                            <th>Título Original</th>
+                                                            <td><%=books[i].titleOriginal%></td>
+                                                      </tr>
+
+                                                      <tr>
+                                                            <th>Editora</th>
+                                                            <td><%=books[i].publisher%></td>
+                                                      </tr>
+
+                                                      <tr>
+                                                            <th>Gênero</th>
+                                                            <td><%=books[i].genres%></td>
+                                                      </tr>
+
+                                                      <tr>
+                                                            <th>Autor</th>
+                                                            <td><%=books[i].author%></td>
+                                                      </tr>
+
+                                                      <tr>
+                                                            <th>Ano de lançamento</th>
+                                                            <td><%=books[i].yearPublic%></td>
+                                                      </tr>
+
+                                                      <tr>
+                                                            <th>Número de páginas</th>
+                                                            <td><%=books[i].pagesBook%></td>
+                                                      </tr>
+                                                </table>
+                                          </div>
+                                    </div>
+                                    <% }%>
+                              </div>
+                              <div class="paginacao">
+                                    <!-- <a href="">&#171; Anterior</a> 
+                                    <a href="">Próxima &#187;</a> -->
+                              </div>
+                        </div>
+                  </div>
+
+            </main>
+
+
+
+            <!-- Categorias e pesquisa -->
+            <aside class="aside">
+                  <div class="aside-content">
+                        <!-- Campo de pesquisa -->
+                        <div class="search">
+                              <form method="get" action="/search/">
+                                    <div class="input-group">
+                                          <input type="search" name="search" id="search" placeholder="Procurar livros" required>
+                                          <button type="submit"></button>
+                                    </div>
+                              </form>
+                        </div>
+                        <!-- Campo de cadastro e login -->
+                        <%
+                        if(showLogin==true){
+                        %>
+                              <%- include('./includes/loginOrNot.ejs') %>
+                        <% 
+                        }else{
+                        %>
+                              <%- include('./includes/managerMenu.ejs') %>
+                        <% 
+                        }
+                        %>
+
+                        <!-- Menu de categorias -->
+                        <%- include('./includes/genres.ejs') %>
+                        <!-- Movido para includes -->
+
+                        <!-- Mais visitados -->
+                        <%- include('./includes/moreVisited.ejs') %>
+                        <!-- Movido para includes -->
+
+                        <!-- Campo de tags -->
+                        <%- include('./includes/tags.ejs') %>
+                        <!-- Movido para includes -->
+                  </div>
+            </aside>
+
+            <!-- Rodapé -->
+            <%- include('./includes/footer.ejs') %>
+
+      </div>
+
+      <script>
+        window.onload = () => {
+            document.body.style.backgroundImage = "linear-gradient(to bottom, transparent, #f0f0f0, #f0f0f0, #f0f0f0, #f0f0f0, #f0f0f0), url(../img/srch-head.jpeg)";
+        }
+
+
+       
+      //Search in onkeyup!
+      //I'm learning!
+     /*  xmlhttp = new XMLHttpRequest();
+      document.querySelector("#search").onkeyup = (obj) => {
+      xmlhttp.open("GET","changeQuery.php?search="+obj.target.value,true);
+      xmlhttp.send(null);
+            xmlhttp.onreadystatechange = () => {
+                  if(xmlhttp.readyState==4){
+                        document.querySelector(".resultados").innerHTML = xmlhttp.responseText;
+                        text = document.querySelector(".numrows").textContent;
+                        text = JSON.parse(text);
+                        document.querySelector("#contues").innerHTML = text.contagem;
+                        document.querySelector(".numrows").style.display = "none";
+                  }
+            }
+      document.querySelector("#values").innerHTML = "Resultado da busca por \""+obj.target.value+"\"";
+      }
+       */
+        
+        </script>
+</body>
+</html>

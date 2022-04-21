@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="utf-8" />
+    <meta name="author" content="Ruan Barroso" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" type="text/css" media="screen" href="../css/adm/nav.css" />
+    <link rel="stylesheet" type="text/css" media="screen" href="../css/adm/corpo.css" />
+    <link rel="icon" href="../img/icon.png">
+    <script src="../js/adm/corpo.js"></script>
+    <title>Painel</title>
+</head>
+<body>
+<header>
+    <nav>
+        <a href="/user-panel/adicionarLivro" class="item">Novo Livro</a> 
+        <%
+        if(levelUser=='ADMIN'){
+        %>
+        <a href="/adm-panel" class="item">Painel</a>
+        <% } %>
+        <a href="../" class="item">Voltar</a>
+    </nav>
+</header>
+<main>
+    <div class="title">
+        <h1>Novo Livro</h1>
+    </div>
+    <div class="notices_alrms">
+        <p> * É obrigatório o preenchimento de todos os dados</p>
+        <p> * Para manter uma biblioteca limpa e organizada, todos os livros adicionados não serão adicionados diretamente </p>
+        <p> * Se todos os dados forem preenchidos, e seu livro for aceito pela análise de informações, ele passará a constar na nossa biblioteca virtual </p>
+        <p class="<%=msg.style%>"><%=msg.msg%></p>
+    </div>
+    <div class="bloco">
+        <div class="cont">
+            <form action="/user-panel/adicionarLivro" method="POST" enctype="multipart/form-data">
+                <article>
+                    <label>Titulo:</label>
+                    <input type="text" oninput="pri_mai(this)" id="first" name="title">
+                </article>
+                <article>
+                    <label>Titulo Original:</label>
+                    <input type="text" oninput="pri_mai(this)" name="titleOriginal">
+                </article>
+                <article>
+                    <label>Gêneros:</label>
+                    <select name="idGenres">
+                    <% 
+                    for(var i=0;i<genres.length;i++){
+                    %>
+                    <option value="<%=genres[i].idGenres%>"><%=genres[i].genres%></option>
+                    <% } %>
+                    </select>
+                </article>
+                <article>
+                    <label>Capa:</label>
+                    <label for="input" class="here">Clique aqui para escolher a capa</label>
+                    <input type="file" id="input" onchange="changeImg()" name="pathCover" accept="image/*">
+                    <img alt="lol" src="" id="img">
+                </article>
+                <article>
+                    <label>Editora:</label>
+                    <input type="text" oninput="pri_mai(this)" name="publisher">
+                </article>
+                <article>
+                    <label>Autor:</label>
+                    <input type="text" oninput="pri_mai(this)" name="author">
+                </article>
+                <article>
+                    <label>Ano de publicação:</label>
+                    <input type="text" oninput="only_num(this)" name="yearPublic">
+                </article>
+                <article>
+                    <label>Páginas</label>
+                    <input type="text" oninput="only_num(this)" name="pagesBook">
+                </article>
+                <article>
+                    <label>Sinopse:</label>
+                    <textarea name="synopsis" oninput="pri_mai(this)" type="text" cols="100" rows="4"></textarea>
+                </article> 
+                <article>
+                    <label>Sobre o autor:</label>
+                    <textarea name="aboutAuthor" oninput="pri_mai(this)" type="text" cols="100" rows="4"></textarea>
+                </article> 
+                <article>
+                <label style="margin-bottom: 5px;">Tags:</label>
+                <div class="tags">
+                    <% 
+                    for(var i=0;i<tags.length;i++){
+                    %>
+                    <input type="checkbox" name="tags[]" id="<%=tags[i].idTags%>" value="<%=tags[i].idTags%>">
+                    <label for="<%=tags[i].idTags%>"><%=tags[i].tags%></label>
+                    <% 
+                    }
+                    %>
+                </div>
+                </article>
+                <article class="last">
+                <input type="submit" name="sendlivro" value="Adicionar novo livro!">
+                </article>
+            </form>
+        </div>
+    </div>
+</main>
+<!--Ruan Barroso-->
+</body>
+</html>

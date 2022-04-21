@@ -1,0 +1,8 @@
+<div class="tags" id="tags">
+    <h4>Tags</h4>
+    <div class="container-tags">
+          <% for(var i=0;i<tags.length;i++){ %>
+         <span class="tag-item"><a href="/search/tags&<%=tags[i].tags%>"><%=tags[i].tags%></a></span>
+         <% }%>
+     </div>
+ </div>
