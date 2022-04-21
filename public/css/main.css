@@ -9,6 +9,9 @@
   text-decoration: underline;
   padding: 5px;
 }
+.div-new-login:hover{
+  background-color: rgb(173, 170, 170);
+}
 .div-new-login article:nth-child(2){
   display: none;
 }
@@ -18,7 +21,6 @@
 .div-new-login article:hover{
   cursor: pointer;
   text-decoration: underline;
-  background-color: rgb(173, 170, 170);
 }
 .aside .aside-content .tags h4, .aside .aside-content .mais-visitados h4, .aside .aside-content .menu-categorias h4, .aside .cadastro h4 {
   margin: 5px 0 15px;
