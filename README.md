@@ -5,8 +5,7 @@ EbookManager
 ---
 
 #### 🚀 Sobre o Projeto
-EbookManager se trata de um projeto, web aplicação de armazenamento e compartilhamento de livros em EPUB e PDF. O projeto original está no github da SannyWeb, aqui está um teste, a hospedagem está em https://ebookmanager.com.br
-
+EbookManager se trata de um projeto, web aplicação de armazenamento e compartilhamento de livros em EPUB e PDF
 ---
 
 #### 📋 Funcionalidades
